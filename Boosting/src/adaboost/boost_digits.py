@@ -45,9 +45,6 @@ classifier = {'alpha':np.zeros(niter), 'd':np.zeros((niter,2)).astype(int), 'p':
 for iter in range(niter):
     # Find the best weak learner
     d,p,theta,correct = findWeakLearner(X_train,t_train,weights)
-    ###########################################################
-    ##################### Fill in #############################
-    ###########################################################
     error = np.sum(weights * (correct == False)) / np.sum(weights)
     alpha = 0.5 * np.log((1 - error)/error)
     
@@ -61,10 +58,6 @@ for iter in range(niter):
         weights[0, i] *= np.exp(-alpha * hx[i] * t_train[i])
         
     weights /= np.sum(weights)
-    ###########################################################
-    ##################### End fill in #########################
-    ###########################################################
-    
     classifier['alpha'][iter]=alpha
     classifier['d'][iter,:]=d
     classifier['p'][iter]=p
